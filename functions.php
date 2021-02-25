@@ -8,3 +8,21 @@ function getPdo()
     }
     return $pdo;
 }
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+function get_content(){
+    $pdo = getPdo(); // подключаемся к БД
+    $query = $pdo->query('SELECT * FROM `modalcontent`'); // задаем запрос к БД
+    return $query->fetchAll(PDO::FETCH_OBJ);
+}
+
+function get_imagesPacks(){
+    $pdo = getPdo(); // подключаемся к БД
+    $query = $pdo->query('SELECT * FROM `imagepacks`'); // задаем запрос к БД
+    return $query->fetchAll(PDO::FETCH_OBJ);
+}

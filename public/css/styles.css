@@ -415,6 +415,10 @@ h1 {
     background: url(/Resoures/Pictures/illust2.png);
 }
 
+.modal-site__img{
+    border-radius: 10px;
+}
+
 .order {
     background: #F2F2F2;
     color: #333333;
