@@ -26,16 +26,64 @@ const siteHButton = document.querySelector(".head__link--sites");
 const iconsHButton = document.querySelector(".head__link--icons");
 const illustHButton = document.querySelector(".head__link--illust");
 
-const photoPeople = document.querySelector(".cards__peoples");
-
-const photoWild = document.querySelector(".cards__wild");
-const photoAnimals = document.querySelector(".cards__animals");
-const photoMok = document.querySelector(".cards__mok");
-
 const overlay = document.querySelector(".overlay");
 
 const modals = document.querySelectorAll(".JSmodal");
 const cardLinks = document.querySelectorAll(".cards__link");
+
+const form = document.querySelector(".order__form");
+const formName = document.querySelector(".form__name");
+const formEmail = document.querySelector(".form__email");
+const formMessage = document.querySelector(".form__input--rich");
+const formSubmit = document.querySelector(".form__button");
+const alertElement = document.querySelector(".alert");
+const alertEmailElement = document.querySelector(".alert_email");
+
+const validateEmail = (email) => {
+    const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    return re.test(String(email).toLowerCase());
+}
+
+const formValidate = () => {
+    if (formName.value === '') {
+        formSubmit.setAttribute('type', 'button');
+        alertElement.classList.remove("hidden");
+    } else {
+        if (formEmail.value === '') {
+            formSubmit.setAttribute('type', 'button');
+            alertElement.classList.remove("hidden");
+        } else {
+            if (validateEmail(formEmail.value)) {
+                if (formMessage.value !== '') {
+                    formSubmit.setAttribute('type', 'submit');
+                    alertElement.classList.add("hidden");
+                } else {
+                    formSubmit.setAttribute('type', 'button');
+                    alertElement.classList.remove("hidden");
+                }
+            }
+        }
+
+    }
+}
+
+formName.addEventListener('keyup', (e) => {
+    formValidate();
+});
+
+formEmail.addEventListener('keyup', (e) => {
+    formValidate();
+    if (!validateEmail(formEmail.value)) {
+        alertEmailElement.classList.remove("hidden");
+    } else {
+        alertEmailElement.classList.add("hidden");
+    }
+});
+
+formMessage.addEventListener('keyup', (e) => {
+    formValidate();
+});
+
 
 const clearActiveButtons = () => {
     photoButton.classList.remove("button-active");
@@ -128,7 +176,6 @@ cardLinks.forEach(element => {
     element.addEventListener('click', (e) => {
         e.preventDefault();
         disableBodyScroll(document);
-        console.log(12);
         modalCur.classList.remove("hidden");
         overlay.classList.remove("hidden");
         let a = () => modalSwitching(e, modalCur);
@@ -141,7 +188,6 @@ cardLinks.forEach(element => {
 const modalSwitching = (e, modal) => {
     overlay.classList.add("hidden");
     enableBodyScroll(document);
-    console.log(modal)
     modal.classList.add("hidden");
     overlay.removeEventListener('click', modalSwitching);
 }
