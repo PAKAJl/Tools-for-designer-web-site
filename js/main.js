@@ -44,6 +44,11 @@ const validateEmail = (email) => {
     return re.test(String(email).toLowerCase());
 }
 
+
+formSubmit.addEventListener('click', () => {
+    alert(123);
+});
+
 const formValidate = () => {
     if (formName.value === '') {
         formSubmit.setAttribute('type', 'button');
