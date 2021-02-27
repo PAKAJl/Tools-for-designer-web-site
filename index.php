@@ -9,6 +9,7 @@ $images = get_imagesPacks(); ?>
     <meta charset="UTF-8">
     <title>Marryyart</title>
 
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/styles.css">
     <script src="/js/jquerry.js"></script>
     <script src="/js/bodyScrollLock.js"></script>
