@@ -375,7 +375,6 @@ $images = get_imagesPacks(); ?>
                     if ($row->link == "icons-black"){
                         $downLink = $row->downloaded;
                     }
-                    echo "$downLink";
                 }?>
 
             </div>
